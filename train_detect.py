@@ -4,6 +4,9 @@ import math
 import pickle
 
 accepted_chars = 'abcdefghijklmnopqrstuvwxyz '
+trainer = '.txt'
+good = '.txt'
+bad = '.txt'
 
 pos = dict([(char, idx) for idx, char in enumerate(accepted_chars)])
 
@@ -19,7 +22,7 @@ def train():
     k = len(accepted_chars)
     counts = [[10 for i in xrange(k)] for i in xrange(k)]
 
-    for line in open('.txt'): #put training
+    for line in open(trainer): #put training
         for a, b in ngram(2, line):
             counts[pos[a]][pos[b]] += 1
 
@@ -28,8 +31,8 @@ def train():
         for j in xrange(len(row)):
             row[j] = math.log(row[j] / s)
 
-    good_probs = [avg_transition_prob(l, counts) for l in open('.txt')] #put good
-    bad_probs = [avg_transition_prob(l, counts) for l in open('.txt')] #put bad
+    good_probs = [avg_transition_prob(l, counts) for l in open(good)] #put good
+    bad_probs = [avg_transition_prob(l, counts) for l in open(bad)] #put bad
 
     assert min(good_probs) > max(bad_probs)
 
