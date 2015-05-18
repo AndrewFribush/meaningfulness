@@ -4,9 +4,9 @@ import math
 import pickle
 
 accepted_chars = 'abcdefghijklmnopqrstuvwxyz '
-trainer = '.txt'
-good = '.txt'
-bad = '.txt'
+trainer = 'trainer.txt'
+good = 'good.txt'
+bad = 'bad.txt'
 
 pos = dict([(char, idx) for idx, char in enumerate(accepted_chars)])
 
